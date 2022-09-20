@@ -12,9 +12,9 @@ module.exports = (name,email,tel,message,file) => {
             user:SMTP_CONFIG.user,
             pass:SMTP_CONFIG.pass,
         },
-        tls:{
-            rejectUnauthorized:false,
-        },
+        // tls:{
+        //     rejectUnauthorized:false,
+        // },
     });
     
     const mail = {
