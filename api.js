@@ -14,15 +14,16 @@ app.get('/', (req, res, next) => {
 // }) 
 
 const upload = require("multer")();
-app.post('/send', upload.single('anexo'), (req, res, next) => { 
+app.post('/send', upload.single('file'), (req, res, next) => { 
    console.log("re",req);
-    const nome = req.body.nome;
+    const name = req.body.name;
     const email = req.body.email;
-    const mensagem = req.body.mensagem;
-    const anexo = req.file;
+    const tel = req.body.tel;
+    const message = req.body.message;
+    const file = req.file;
 
-    console.log("nome",nome);
-    require("./nodemail")(email, nome, mensagem, anexo)
+    console.log("nome",name);
+    require("./nodemail")(name,email, tel, message, file)
         .then(response => res.json(response))
         .catch(error => res.json(error));
 })
