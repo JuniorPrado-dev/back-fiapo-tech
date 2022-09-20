@@ -1,30 +1,45 @@
 const mailer = require("nodemailer");
- 
-module.exports = (email, nome, mensagem, anexo) => {
+const SMTP_CONFIG=require('./config/smtp.js') 
+module.exports = (name,email,tel,message,file) => {
     const smtpTransport = mailer.createTransport({
-        host:'smtp.office365.com',
-        port:587,
+        // host:'smtp.office365.com',
+        // port:587,
+        // secure:false,
+        host:SMTP_CONFIG.host,
+        port:SMTP_CONFIG.port,
         secure:false,
         auth:{
-            user:"fiapo.assistente@hotmail.com",
-            pass:"Fia123321."
-        }
-    })
+            user:SMTP_CONFIG.user,
+            pass:SMTP_CONFIG.pass,
+        },
+        tls:{
+            rejectUnauthorized:false,
+        },
+    });
     
     const mail = {
-        from: "Assistente <fiapo.assistente@hotmail.com>",
+        //username:'fiapotech@gmail.com',
+        from:`Assistente Fiapo <${SMTP_CONFIG.user}>`,
         to:'fiapotech@gmail.com',
-        subject: `${nome} te enviou uma mensagem`,
-        text: mensagem,
+        subject: `${name} Fez um pedido!`,
+        text: `
+        Cliente: ${name}
+        Email: ${email}
+        Telefone: ${tel}
+        _________________________________________
+        
+        Decrição do pedido: ${message}
+        _________________________________________
+        `,
         //html: "<b>Opcionalmente, pode enviar como HTML</b>"
     }
     
-    if(anexo){
-        console.log(anexo);
+    if(file){
+        console.log(file);
         mail.attachments = [];
         mail.attachments.push({
-            filename: anexo.originalname,
-            content: anexo.buffer
+            filename: file.originalname,
+            content: file.buffer
         })
     }
     
