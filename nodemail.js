@@ -35,7 +35,7 @@ module.exports = (name,email,tel,message,file) => {
     }
     
     if(file){
-        console.log(file);
+        // console.log(file);
         mail.attachments = [];
         mail.attachments.push({
             filename: file.originalname,
