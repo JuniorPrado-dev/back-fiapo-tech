@@ -36,5 +36,5 @@ app.post('/send', upload.single('file'), (req, res, next) => {
 })
 
 const server = https.createServer(options,app); 
-server.listen(3030);
+server.listen(443);
 console.log("Servidor escutando na porta 3030...")
