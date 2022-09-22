@@ -14,10 +14,10 @@ app.get("/", (req, res) => {
 
 // Carrega o certificado e a key necessários para a configuração.
 const options = {
-  key: fs.readFileSync("/etc/letsencrypt/live/api.fiapotech.com/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/api.fiapotech.com/fullchain.pem")
-  // key: fs.readFileSync("server.key"),
-  // cert: fs.readFileSync("server.cert")
+  // key: fs.readFileSync("/etc/letsencrypt/live/api.fiapotech.com/privkey.pem"),
+  // cert: fs.readFileSync("/etc/letsencrypt/live/api.fiapotech.com/fullchain.pem")
+  key: fs.readFileSync("server.key"),
+  cert: fs.readFileSync("server.cert")
 };
 
 const upload = require("multer")();
@@ -36,5 +36,5 @@ app.post('/send', upload.single('file'), (req, res, next) => {
 })
 
 const server = https.createServer(options,app); 
-server.listen(443);
-console.log("Servidor escutando na porta 443...")
+server.listen(3030);
+console.log("Servidor escutando na porta 2 ..")
