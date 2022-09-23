@@ -9,7 +9,9 @@ app.use(bodyParser.json());
 
 // Instância express
 app.get("/", (req, res) => {
-  res.send("Hello world using HTTPS!");
+  const ip=req.socket.remoteAddress;
+  res.send("Hello world using HTTPS! ip:",ip);
+
 });
 
 // Carrega o certificado e a key necessários para a configuração.
