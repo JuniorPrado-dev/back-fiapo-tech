@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 // Instância express
 app.get("/", (req, res) => {
   var remoteIp = req.ip // Recupera o endereço através do socket da conexão
+  console.log(`Hello world using HTTPS! ip:${remoteIp}`);
   res.send(`Hello world using HTTPS! ip:${remoteIp}`);
 
 });
